@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="TheApp">
+<head>
+    <meta charset="utf-8" />
+    <title>The Project</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core Css -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- Waves Effect Css -->
+    <link href="assets/plugins/node-waves/waves.css" rel="stylesheet" />
+    <!-- Animation Css -->
+    <link href="assets/plugins/animate-css/animate.css" rel="stylesheet" />
+    <!-- JQuery DataTable Css -->
+    <link href="assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="assets/css/themes/all-themes.css" rel="stylesheet" />
+    <link href="assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="assets/plugins/multi-select/css/multi-select.css" rel="stylesheet" />
+    
+</head>
+<body class="theme-indigo" ng-controller="indexController">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a class="navbar-brand" href="index.html">Zethu Consulting Services </a>
+            </div>
+            
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- #User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="assets/img/ic_app.png" alt="Logo" style="margin-left:40px;height:130px;width:130px"/>
+                </div>
+            </div>
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li  class="active">
+                        <a class="menu-toggle">
+                            <i class="material-icons">widgets</i>
+                            <span>Clients</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="" ng-click="navigateTo('/addClient')">Add Client</a>
+                            </li>
+                            <li>
+                                <a href="" ng-click="navigateTo('/viewClients')">View Views</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="menu-toggle">
+                            <i class="material-icons">widgets</i>
+                            <span>Users</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="" ng-click="navigateTo('/addUser')">Add User</a>
+                            </li>
+                            <li>
+                                <a href="" ng-click="navigateTo('/viewUsers')">View Users</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="menu-toggle">
+                            <i class="material-icons">text_fields</i>
+                            <span>Portfolio</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="" ng-click="navigateTo('/addPortfolio')">Add Portfolio</a>
+                            </li>
+                            <li>
+                                <a href="" ng-click="navigateTo('/viewPortfolios')">View Portfolio</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="menu-toggle">
+                            <i class="material-icons">layers</i>
+                            <span>Facility</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="" ng-click="navigateTo('/addFacility')">Add Facility</a>
+                            </li>
+                            <li>
+                                <a href="" ng-click="navigateTo('/viewFacilities')">View Facilities</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="menu-toggle">
+                            <i class="material-icons">home</i>
+                            <span>Building</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="" ng-click="navigateTo('/addBuilding')">Add Building</a>
+                            </li>
+                            <li>
+                                <a href="" ng-click="navigateTo('/viewBuildings')">View Buildings</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2018 <a href="javascript:void(0);">The Project</a>.
+                </div>
+                <div class="version">
+                    <b>Version: </b> 1.0.0
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+        <!-- #END# Right Sidebar -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <ng-view></ng-view>
+        </div>
+    </section>
+    <!--Libraries-->
+    <script src="assets/js/angular.js"></script>
+    <script src="assets/js/angular-route.js"></script>
+    <script src="assets/js/ngStorage.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    <!--App Config-->
+    <script src="app/app.js"></script>
+    <script src="app/config.route.js"></script>
+
+
+    <!--Controllers-->
+    <script src="indexController.js"></script>
+    <script src="app/components/facility/viewFacilities.controller.js"></script>
+    <script src="app/components/facility/addFacility.Controller.js"></script>
+    <script src="app/components/portfolio/viewPortfolio.controller.js"></script>
+    <script src="app/components/portfolio/addPortfolio.Controller.js"></script>
+    <script src="app/components/building/viewbuildings.controller.js"></script>
+    <script src="app/components/building/addBuilding.Controller.js"></script>
+    <script src="app/components/user/addUser.Controller.js"></script>
+    <script src="app/components/user/viewUsers.controller.js"></script>
+    <script src="app/components/TheProject.Service.js"></script>
+    <script src="app/components/TheProject.Factory.js"></script>
+    <script src="app/components/client/addClient.controller.js"></script>
+    <script src="app/components/client/viewclients.controller.js"></script>
+
+    <!-- Jquery Core Js -->
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core Js -->
+    <script src="assets/plugins/bootstrap/js/bootstrap.js"></script>
+    <!-- Select Plugin Js -->
+    <script src="assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <!-- Slimscroll Plugin Js -->
+    <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="assets/plugins/node-waves/waves.js"></script>
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="assets/plugins/jquery-countto/jquery.countTo.js"></script>
+    <!-- Morris Plugin Js -->
+    <script src="assets/plugins/raphael/raphael.min.js"></script>
+    <script src="assets/plugins/morrisjs/morris.js"></script>
+    <!-- ChartJs -->
+    <script src="assets/plugins/chartjs/Chart.bundle.js"></script>
+    <!-- Flot Charts Plugin Js -->
+    <!--<script src="assets/plugins/flot-charts/jquery.flot.js"></script>
+    <script src="assets/plugins/flot-charts/jquery.flot.resize.js"></script>
+    <script src="assets/plugins/flot-charts/jquery.flot.pie.js"></script>
+    <script src="assets/plugins/flot-charts/jquery.flot.categories.js"></script>
+    <script src="assets/plugins/flot-charts/jquery.flot.time.js"></script>-->
+    <!-- Sparkline Chart Plugin Js -->
+    <script src="assets/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+    <!-- Custom Js -->
+    <script src="assets/js/admin.js"></script>
+    <!--<script src="assets/js/pages/index.js"></script>-->
+    <!-- Demo Js -->
+    <script src="assets/js/demo.js"></script>
+    <script src="assets/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="assets/plugins/sweetalert/sweetalert-dev.js"></script>
+    <script src="assets/plugins/multi-select/js/jquery.multi-select.js"></script>
+</body>
+</html>

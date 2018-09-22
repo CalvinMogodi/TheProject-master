@@ -1,0 +1,77 @@
+﻿<div class="container-fluid">
+    <!-- Basic Examples -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header bg-blue-grey">
+                    <h2>
+                      Facilities
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" ng-model="query" placeholder="Search" ng-change="search()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Client Code</th>
+                                    <th>Suburb</th>
+                                    <th>Status</th>
+                                    <th>Responsible</th>
+                                    <th>Province</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="pagination pull-right">
+                                            <div class="btn-group" role="group" aria-label="First group">
+                                                <button type="button" class="btn waves-effect" ng-class="{disabled: currentPage == 0}"
+                                                        ng-click="prevPage()">
+                                                    << Prev
+                                                </button>
+                                                <button type="button" class="btn waves-effect"
+                                                        ng-repeat="n in range(pagedItems.length, currentPage, currentPage + gap) "
+                                                        ng-class="{active: n == currentPage}"
+                                                        ng-click="setPage()">
+                                                    <span ng-bind="n + 1">1</span>
+                                                </button>
+                                                <button type="button" class="btn waves-effect" ng-class="{disabled: (currentPage) == pagedItems.length - 1}"
+                                                        ng-click="nextPage()">
+                                                    Next >>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <!--<tr ng-repeat="facility in Facilities" ng-click="viewFacility(facility)">-->
+                                <tr ng-repeat="facility in pagedItems[currentPage] | orderBy:sort.sortingOrder:sort.reverse" ng-click="viewFacility(facility)">
+                                    <td>{{facility.Name}}</td>
+                                    <td>{{facility.ClientCode}}</td>
+                                    <td>{{facility.Location.Suburb}}</td>
+                                    <td>{{facility.Status}}</td>
+                                    <td>{{facility.ResposiblePerson.FullName}}</td>
+                                    <td>{{facility.Location.Province}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Basic Examples -->
+</div>
+
+ 

@@ -1,0 +1,86 @@
+﻿
+@using TheProject.ReportWebApplication.Utilities
+@model IPagedList<TheProject.ReportWebApplication.Models.Facility>
+@{
+    ViewBag.Title = "Facilities";
+}
+@{
+    ViewBag.Title = "Facility Report";
+}
+
+<table style="width: 100%;">
+    <tr>
+        <td style="width: 50%">
+            <h3>Facilities</h3>
+        </td>
+    </tr>
+</table>
+<table style="width: 100%;">
+    <tr>
+        <td style="width: 50%">
+
+            @using (Html.BeginForm("DownloadAllFacility", "Facility", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <br />
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Region</label>
+                        <div class="col-md-4">
+                            @Html.DropDownList("Region", (SelectList)ViewBag.Regions, string.Empty, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" value="Download Reports By Region" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </td>
+        <td style="margin: 5px; text-align: right; width: 100%;">
+            @{ Html.RenderPartial("_NameSearch", "Facility");}
+        </td>
+    </tr>
+</table>
+<table class="table table-bordered">
+    <thead>
+        <tr class="info">
+            <th>
+                Client Code
+            </th>
+            <th>
+                Settlement Type
+            </th>
+
+            <th>
+                Zoning
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm("DownloadFacility", "Facility", new { clientCode = item.ClientCode }, FormMethod.Post))
+        {
+            <tr class="active">
+                @Html.AntiForgeryToken()
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SettlementType)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Zoning)
+                </td>
+                <td>
+                    <input type="submit" target="_blank" formtarget="_blank" value="Download" class="btn btn-info btn-xs" />
+                </td>
+            </tr>
+        }
+    }
+</table>
+@Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+

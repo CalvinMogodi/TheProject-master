@@ -1,0 +1,43 @@
+﻿<!-- Input -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Add Porfolio
+                    <small>Porfolio Information</small>
+                </h2>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input-container>
+                                        <label>Client</label>
+                                        <select ng-model="portfolio.client" ng-options="client as client.ClientName for client in clients" 
+                                                class="form-control show-tick" >
+                                            <option value="" disabled>------Select Client------</option>
+                                        </select>
+                                    </input-container>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <label>Portfolio Name</label>
+                                    <input type="text" class="form-control" ng-model="portfolio.name" placeholder="Porfolio Name" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-default waves-effect" type="submit">Cancel</button>
+                    <button class="btn btn-primary waves-effect" type="submit" ng-click="savePortfolio(portfolio)">SUBMIT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Input -->
