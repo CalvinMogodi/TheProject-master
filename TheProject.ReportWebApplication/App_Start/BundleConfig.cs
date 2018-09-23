@@ -25,6 +25,9 @@ namespace TheProject.ReportWebApplication
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css"));
+            bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
+                     "~/Content/font-awesome.css"));
+            
         }
     }
 }

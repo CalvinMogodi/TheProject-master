@@ -49,8 +49,18 @@ textarea {
 
 /*New CSS*/
 
+.logout {
+    content: "\25AE"; /* this is your text. You can also use UTF-8 character codes as I do here */
+    font-family: FontAwesome;
+    left: -5px;
+    position: absolute;
+    top: 0;
+    margin-top: 15px;
+    color: #546e7a;
+    text-decoration: none;
+}
 body {
-    padding-top: 10rem;
+    padding-top: 7rem;
 }
 
 .starter-template {
@@ -185,7 +195,8 @@ body {
 
 .header {
     text-transform: uppercase;
-    font-size: 32px;
+    font-size: 25px;
+    padding-top: 15px;
     color: #101e45;
     letter-spacing: -1px;
 }
@@ -230,6 +241,68 @@ body {
 
 /**/
 
+.sidebar {
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    font-family: "Montserrat",sans-serif;
+    width: 250px;
+    height: calc(100vh - 65px);
+    position: fixed;
+    top: 65px;
+    left: 0;
+    z-index: 10;
+}
+
+.sidebar .menu .list a {
+        color: #546e7a;
+        position: relative;
+        padding: 14px 10px;
+}
+
+.waves-block {
+    display: block;
+}
+
+button, input, select, a {
+    outline: none !important;
+}
+
+a {
+    color: #f96332;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    background-color: transparent;
+}
+    .waves-effect:hover {
+        color: #101e45;
+        text-decoration: none;
+        font-size: 19px;
+    }
+    .sidebar .menu .list {
+        list-style: none;
+    }
+
 .logo {
     margin-left: -200px;
     float: left;
@@ -259,10 +332,16 @@ body {
     background: rgba(255,255,255,0.3);
 }
 
+.sidebar-icon {
+    margin-left: -15px;
+    padding: 5px;
+    font-size: 25px !important;
+}
+
 .sidebar .user-info {
     position: relative;
     border-bottom: 1px solid #eee;
-    margin-top:100px;
+    margin-top: 50px !important;
 }
 .sidebar .menu .list a {
     color: #546e7a;

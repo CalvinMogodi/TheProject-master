@@ -4,23 +4,30 @@
 
 <div class="block-header">
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12">
-            <h2>Dashboard</h2>
-            <ul class="breadcrumb p-l-0 p-b-0 ">
-                <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> sQuare</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ul>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <h2>Dashboard</h2>            
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 text-right">
-            <div class="inlineblock text-center m-r-15 m-l-15 hidden-md-down">
-                <div class="sparkline" data-bar-color="#706bd1" data-bar-spacing="5" data-bar-width="2" data-height="25px" data-width="97%" data-type="bar"><canvas width="100" height="25" style="width: 100px; height: 25px; vertical-align: top; display: inline-block;"></canvas></div>
-                <small>Page Views</small>
-            </div>
-            <div class="inlineblock text-center m-r-15 m-l-15 hidden-md-down">
-                <div class="sparkline" data-bar-color="#f9666e" data-bar-spacing="5" data-bar-width="2" data-height="25px" data-width="97%" data-type="bar"><canvas width="100" height="25" style="width: 100px; height: 25px; vertical-align: top; display: inline-block;"></canvas></div>
-                <small>Visitors</small>
-            </div>
-            <button class="btn btn-primary btn-round btn-simple hidden-sm-down float-right m-l-10">Create New</button>
+        <div class="col-lg-8 col-md-8 col-sm-12">
+            @using (Html.BeginForm("DownloadAllFacility", "Facility", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <br />
+                    <div class="form-group">
+                        <label class="control-label col-lg-2 col-md-2 col-sm-12">Region</label>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            @Html.DropDownList("Region", (SelectList)ViewBag.Regions, string.Empty, new { @class = "form-control" })
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <input type="submit" value="Filter By Region" class="btn btn-success" />
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-12">
+                            <input type="submit" value="Claer" class="btn btn-light" />
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-</div>
+    </div>
