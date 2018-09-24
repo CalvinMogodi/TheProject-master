@@ -19,8 +19,9 @@ namespace TheProject.ReportWebApplication.Controllers
         int _defaultPageSize = 20;
 
         #endregion
-        public ActionResult Index()
-        {           
+        public ActionResult Index(string selectedRegion)
+        {
+            HomeModel homeModel = new HomeModel();
             List<Facility> facilities = GetFacilities();
             List<Facility> SubmittedFacilities = facilities.Where(ss => ss.Status == "Submitted").ToList();
 
@@ -34,12 +35,63 @@ namespace TheProject.ReportWebApplication.Controllers
             propertiesPercentage = propertiesPercentage.Replace(",", ".");
             ViewData["NoOfImprovements"] = SubmittedFacilities.Sum(f => f.NoOfImprovements);
             ViewData["ImprovementsSize"] = SubmittedFacilities.Sum(f => f.ImprovementsSize);
-            ViewData["OccupationStatus"] = String.Format("{0:.##}", (SubmittedFacilities.Sum(f => f.OccupationStatus)));
+
+            decimal value3 = Convert.ToDecimal(SubmittedFacilities.Sum(f => f.OccupationStatus));
+            decimal value4 = SubmittedFacilities.Sum(f => f.NoOfImprovements);
+            decimal div1 = decimal.Divide(value3, value4);
+            ViewData["OccupationStatus"] = String.Format("{0:.##}", (div1));
 
             ViewData["PropertiesPercentage"] = propertiesPercentage;
             ViewBag.Regions = new SelectList(regions);
+            homeModel.ImprovementsSize = SubmittedFacilities.Sum(f => f.ImprovementsSize);
+            homeModel.PropertiesCount = SubmittedFacilities.Count;
+            homeModel.NoOfImprovements = SubmittedFacilities.Sum(f => f.NoOfImprovements);
+            homeModel.OccupationStatus = String.Format("{0:.##}", (div1));
+            homeModel.PropertiesPercentage = propertiesPercentage;
+            homeModel.DataPoints = GetDataPoints(selectedRegion, facilities);
 
-            return View();
+            return View(homeModel);
+        }
+
+        private List<DataPoint> GetDataPoints(string selectedRegion, List<Facility> facilities)
+        {
+            if (!string.IsNullOrEmpty(selectedRegion))
+            {
+                List<Facility> sortedFacilities = new List<Facility>();
+                foreach (var item in facilities)
+                {
+                    if (!string.IsNullOrEmpty(item.Region))
+                    {
+                        if (item.Region.ToLower().Trim() == selectedRegion.ToLower().Trim())
+                        {
+                            sortedFacilities.Add(item);
+                        }
+                    }
+                }
+                facilities = sortedFacilities;
+            }
+
+            List<Facility> SubmittedFacilities = facilities.Where(ss => ss.Status == "Submitted").ToList();
+            var PropertiesCount = SubmittedFacilities.Count;
+            int value1 = SubmittedFacilities.Count;
+            int value2 = facilities.Count;
+            decimal div = decimal.Divide(value1, value2);
+            string propertiesPercentage = String.Format("{0:.##}", (div * 100));
+            propertiesPercentage = propertiesPercentage.Replace(",", ".");
+            var NoOfImprovements = SubmittedFacilities.Sum(f => f.NoOfImprovements);
+            var ImprovementsSize = SubmittedFacilities.Sum(f => f.ImprovementsSize);
+            var OccupationStatus = String.Format("{0:.##}", (SubmittedFacilities.Sum(f => f.OccupationStatus)));
+            var PropertiesPercentage = propertiesPercentage;
+
+            List<DataPoint> dataPoints = GetZoning(SubmittedFacilities);
+            var random = new Random();
+
+            foreach (var item in dataPoints)
+            {
+                item.Color = string.Format("#{0:X6}", random.Next(0x1000000)); 
+            }
+
+            return dataPoints;
         }
 
         [HttpPost]
@@ -154,7 +206,7 @@ namespace TheProject.ReportWebApplication.Controllers
                 if (!string.IsNullOrEmpty(zoning))
                 {
                     var zoningCount = newfacilities.Where(d => d.Zoning.ToLower().Trim() == zoning.ToLower().Trim()).ToList();
-                    dataPoints.Add(new DataPoint(zoning, zoningCount.Count));
+                    dataPoints.Add(new DataPoint(zoning, "", "",zoningCount.Count));
                 }                
             }
             
@@ -177,6 +229,7 @@ namespace TheProject.ReportWebApplication.Controllers
                 foreach (var item in dbfacilities)
                 {
                     double utiliatonStatusTotal = item.Buildings.Sum(b => Convert.ToDouble(b.Status));
+
                     facilities.Add(new Facility
                     {
                         ClientCode = item.ClientCode,
@@ -185,7 +238,7 @@ namespace TheProject.ReportWebApplication.Controllers
                         Region = item.Location.Region,
                         NoOfImprovements = item.Buildings.Count,
                         ImprovementsSize = item.Buildings.Sum(b => b.ImprovedArea),
-                        OccupationStatus = item.Buildings.Count != 0 ? utiliatonStatusTotal / item.Buildings.Count : utiliatonStatusTotal,
+                        OccupationStatus = utiliatonStatusTotal,
                         Status = item.Status
                     });
                 }
@@ -208,7 +261,6 @@ namespace TheProject.ReportWebApplication.Controllers
                 foreach (var item in dbfacilities)
                 {
                     double utiliatonStatusTotal = item.Buildings.Sum(b => Convert.ToDouble(b.Status));
-
                     facilities.Add(new Facility
                     {
                         ClientCode = item.ClientCode,
@@ -217,7 +269,8 @@ namespace TheProject.ReportWebApplication.Controllers
                         Region = item.Location.Region,
                         NoOfImprovements = item.Buildings.Count,
                         ImprovementsSize = item.Buildings.Sum(b => b.ImprovedArea),
-                        OccupationStatus = item.Buildings.Count != 0 ? utiliatonStatusTotal / item.Buildings.Count : utiliatonStatusTotal,
+                        //OccupationStatus = item.Buildings.Count != 0 ? Convert.ToDouble(item.Status) : Convert.ToDouble(item.Status),
+                        OccupationStatus = utiliatonStatusTotal,
                         Status = item.Status
                     });
 

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model TheProject.ReportWebApplication.Models.HomeModel
+@{
     ViewBag.Title = "Home Page";
 }
 <div class="block-header">
@@ -8,18 +9,18 @@
         </div>
         <div class="col-lg-8 col-md-8 col-sm-12 margin-top-25">
 
-                    <div class="row">
-                        <label class="control-label col-lg-2 col-md-2 col-sm-12 padding-5">Region</label>
-                        <div class="col-lg-4 col-md-4 col-sm-4">
-                            @Html.DropDownList("Region", (SelectList)ViewBag.Regions, string.Empty, new { @class = "form-control", @id = "dropDownId" })
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4">
-                            <input type="submit" id="filterByRegionBtn" value="Filter By Region" class="btn btn-success" />
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-12">
-                            <input type="submit" id="claerBtn" value="Claer" class="btn btn-light claer-btn" />
-                        </div>
-                    </div>
+            <div class="row">
+                <label class="control-label col-lg-2 col-md-2 col-sm-12 padding-5">Region</label>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    @Html.DropDownList("Region", (SelectList)ViewBag.Regions, string.Empty, new { @class = "form-control", @id = "dropDownId" })
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <input type="submit" id="filterByRegionBtn" value="Filter By Region" class="btn btn-success" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12">
+                    <input type="submit" id="claerBtn" value="Claer" class="btn btn-light claer-btn" />
+                </div>
+            </div>
 
         </div>
     </div>
@@ -29,14 +30,15 @@
     <div class="row clearfix">
         <div class="col-lg-3 col-md-6 col-sm-12 width-100">
             <div class="dashboard-card" style="color:white; background-color: orange; text-align: center;">
-                <div class="card-body">
-                    <h3 style="color:white !important;" class="m-b-0 number count-to" data-from="0" data-to="1600" data-speed="2000" data-fresh-interval="700" id="PropertiesCount">@ViewData["PropertiesCount"]</h3>
-                                        <p class="text-muted">Number of properties</p>
-                                        <div class="progress">
-                                            <div class="progress-bar l-blush" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100"  style="width: @ViewData["PropertiesPercentage"]%;"></div>
-                                        </div>
-                                        <small class="percentage"  id="PropertiesPercentage">Signed Off @ViewData["PropertiesPercentage"]%</small>
-</div>
+                <div class="card-body" style="color:#FFFFFF">
+                    <i style="font-size: xx-large;" class="fa fa-list-ol" aria-hidden="true"></i>
+                    <h3 style="color:white !important;" class="m-b-0 number count-to" data-from="0" data-to="1600" data-speed="2000" data-fresh-interval="700" id="PropertiesCount">@Model.PropertiesCount</h3>
+                    <p class="text-muted">Number of properties</p>
+                    @*<div class="progress">
+                            <div class="progress-bar l-blush" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100" id="propertiesPercentageProgressbar" style="width: @ViewData["PropertiesPercentage"]%;"></div>
+                        </div>*@
+                    <small class="percentage">Signed Off <span id="PropertiesPercentage">@Model.PropertiesPercentage</span><span>%</span></small>
+                </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 width-100">
@@ -45,8 +47,8 @@
                     <div class="card info-box-2 hover-zoom-effect twitter-widget">
                         <div class="dashboard-content" style="color:#FFFFFF">
                             <i style="font-size: xx-large;" class="fa fa-building" aria-hidden="true"></i>
-                            <div class="dashboard-number"style="color:#FFFFFF" id="noOfImprovements">@ViewData["NoOfImprovements"]</div>
-                            <div class="dashboard-text"style="color:#FFFFFF">Number of improvements</div>
+                            <div class="dashboard-number" style="color:#FFFFFF" id="noOfImprovements">@Model.NoOfImprovements</div>
+                            <div class="dashboard-text" style="color:#FFFFFF">Number of improvements</div>
                         </div>
                     </div>
                 </div>
@@ -55,10 +57,10 @@
         <div class="col-lg-3 col-md-6 col-sm-12 width-100">
             <div class="dashboard-card" style="background-color: orangered; color:#FFFFFF">
                 <div class="card-body">
-                    <div class="card info-box-2 hover-zoom-effect twitter-widget">                        
+                    <div class="card info-box-2 hover-zoom-effect twitter-widget">
                         <div class="dashboard-content" style="color:#FFFFFF">
                             <div class="dashboard-icon"><i style="font-size: xx-large;" class="fa fa-level-up" aria-hidden="true"></i></div>
-                            <div class="dashboard-number" style="color:#FFFFFF" id="ImprovementsSize">@ViewData["ImprovementsSize"]</div>
+                            <div class="dashboard-number" style="color:#FFFFFF"><span id="ImprovementsSize">@Model.ImprovementsSize</span><span>M2</span></div>
                             <div class="dashboard-text" style="color:#FFFFFF">Size of improvements</div>
                         </div>
                     </div>
@@ -68,10 +70,10 @@
         <div class="col-lg-3 col-md-6 col-sm-12 width-100">
             <div class="dashboard-card" style="background-color: purple; color:#FFFFFF">
                 <div class="card-body">
-                    <div class="card info-box-2 hover-zoom-effect twitter-widget">                        
-                        <div class="dashboard-content" style="color:#FFFFFF" >
+                    <div class="card info-box-2 hover-zoom-effect twitter-widget">
+                        <div class="dashboard-content" style="color:#FFFFFF">
                             <div class="dashboard-icon"><i style="font-size: xx-large; color:#FFFFFF" class="fa fa-arrows-h" aria-hidden="true"></i></div>
-                            <div class="dashboard-number" style="color:#FFFFFF" id="OccupationStatus">@ViewData["OccupationStatus"]</div>
+                            <div class="dashboard-number" style="color:#FFFFFF"><span id="OccupationStatus">@Model.OccupationStatus</span><span>%</span></div>
                             <div class="dashboard-text" style="color:#FFFFFF">Occupation Status</div>
                         </div>
                     </div>
@@ -80,21 +82,29 @@
         </div>
     </div>
 
-    <div class="clearfix margin-55">
-        <div class="col-lg-12" style="background-color: darkturquoise;border-radius: .55rem; margin-bottom: 30px; transition: .5s; border: 0;    padding: 15px;
-    position: relative;
-    width: 100%;
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1);">
-            <div Style="font-family: Corbel; font-size: small ;text-align:center ; padding: 15px;" class="row">
+    <div class="row">
+            @foreach (var item in Model.DataPoints)
+            {
+                <div class="dashboard-card class="col-lg-3 col-md-6 col-sm-12 width-100"" style="background-color: purple; color: @item.Color">
+                    <div class="card-body">
+                        <div class="card info-box-2 hover-zoom-effect twitter-widget">
+                            <div class="dashboard-content" style="color:#FFFFFF">                                
+                                <div class="dashboard-number" style="color:#FFFFFF"><span>@item.Y</span></div>
+                                <div class="dashboard-text" style="color:#FFFFFF">@item.Label</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @*<div Style="font-family: Corbel; font-size: small ;text-align:center ; padding: 15px;" class="row">
                 <div style="width:100%;height:100%;margin-left: 5px;">
                     <canvas id="myChart" style="padding: 0;margin: auto;display: block; "> </canvas>
                 </div>
-            </div>
-        </div>
+            </div>*@
     </div>
 </div>
 
-<script>
+@*<script>
 
     $('#claerBtn').click(function () {
         $.ajax({
@@ -108,7 +118,9 @@
                 $("#PropertiesCount").empty().append(aData[4]).find('#PropertiesCount');
                 $("#ImprovementsSize").empty().append(aData[5]).find('#ImprovementsSize');
                 $("#OccupationStatus").empty().append(aData[6]).find('#OccupationStatus');
-                $("#PropertiesPercentage").empty().append(aData[7]).find('#PropertiesPercentage');
+                $("#PropertiesPercentage").empty().append('Signed Off ' + aData[7] + '%').find('#PropertiesPercentage');
+                var dsf = aData[7] + '%';
+                $("#propertiesPercentageProgressbar").css({ width: dsf });
                 var aLabels = aData[0];
                 var aDatasets1 = aData[1];
                 var dataT = {
@@ -148,7 +160,7 @@
             url: "/Home/NewChart",
             dataType: "json",
             data: { selectedRegion: selectedRegion },
-            success: function (chData) {               
+            success: function (chData) {
                 var aData = chData;
                 $("#noOfImprovements").empty().append(aData[3]).find('#noOfImprovements');
                 $("#PropertiesCount").empty().append(aData[4]).find('#PropertiesCount');
@@ -223,4 +235,4 @@
             });
         }
     });
-</script>
+</script>*@

@@ -692,7 +692,8 @@ p {
 .dashboard-number {
     font-weight: 400;
     color: #616161;
-    font-size: 26px;
+    font-size: 30px;
+    padding: 10px;
 }
 
 .text-muted {

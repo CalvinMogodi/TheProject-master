@@ -167,6 +167,7 @@
     <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\ErrorLog.cs" />
     <Compile Include="Models\Facility.cs" />
+    <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\User.cs" />
