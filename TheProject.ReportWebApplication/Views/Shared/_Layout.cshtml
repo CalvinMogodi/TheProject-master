@@ -18,16 +18,27 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container" style="float: left; padding: 10px; width:100%">
             <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-12">
+                <button class="navbar-toggler isNotMobile" style="height: 25px;" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+                        aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </button>
+                <div class="col-lg-2 col-md-12 col-sm-12 center-header">
                     <img height="70px" width="150px" src="~/Content/ic_app.png">
+                    <label class="header isNotMobile">ZCS Asset Management</label>
+                    @Html.ActionLink("Logout", "Logout", "Home", new { @class = "logout isNotMobile" })
                 </div>
-                <div class="col-lg-8 col-md-8 col-sm-12">
+                <div class="col-lg-8 col-md-12 col-sm-12 isMobile">
                     <label class="header">ZCS Asset Management</label>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-12">
-                    @Html.ActionLink("Logout", "Logout","Home" , new { @class = "logout" })
+                <div class="col-lg-2 col-md-12 col-sm-12 isMobile">
+                    @Html.ActionLink("Logout", "Logout", "Home", new { @class = "logout" })
                 </div>
             </div>
+
+            <ul class="collapse list" style="overflow: hidden; width: auto; height: calc(100vh - 65px); list-style: none;" id="navbarToggleExternalContent">
+                <li><a class="waves-effect waves-block menu-item" href="#"><i class="fa fa-home sidebar-icon"></i><span class="primery-color">@Html.ActionLink("Dashboard", "Index", "Home")</span></a> </li>
+                <li><a class="waves-effect waves-block menu-item" href="#"><i class="fa fa-file-o sidebar-icon"></i><span class="primery-color">@Html.ActionLink("Reports", "Index", "Facility")</span> </a> </li>
+            </ul>
         </div>
     </div>
     <div class="container body-content">

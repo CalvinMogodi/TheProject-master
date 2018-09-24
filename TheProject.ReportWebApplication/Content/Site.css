@@ -11,6 +11,162 @@
     font-weight: 400;
 }
 
+@media(min-width: 768px) {
+    .left-div{ 
+        height: 550px; 
+        width:550px
+    }
+}
+.isNotMobile {
+    display: none;
+}
+@media (max-width: 768px) {
+    /* For mobile phones: */
+    .body-content {
+        width: 100% !important;
+        margin-left: 0px !important;
+        margin-top: 15px !important;
+    }
+
+    .claer-btn {
+        margin-left: 227px !important;
+        margin-top: 15px !important;
+    }
+    .width-100 {
+        width: 100% !important;
+    }
+
+    .margin-50 {
+        margin-left: 50% !important;       
+    }
+
+    .isMobile {
+        display:none;
+    }
+    .isNotMobile {
+        display: block;
+    }
+
+    .margin-55 {
+        margin-left: -55px !important;
+        display: flex !important;
+    }
+    .login-left-div {
+        margin-top: -90px !important;
+        background-color: #FFFFFF;
+        color: #fff;
+        background-repeat: repeat;
+        width: 100% !important;
+        height: auto !important;
+        margin-left: 0px !important;
+        border-radius: 20px;
+    }
+
+
+    #myChart {
+        padding: 0px;
+        margin: auto;
+        display: block;
+        height: 450px !important;
+        width: 900px !important;
+    }
+
+    .row {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
+
+    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+        position: relative;
+        min-height: 1px;
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .header {
+        text-transform: uppercase;
+        font-size: 20px !important;
+        padding-top: 0px !important;
+        padding-bottom: 10px !important;
+        color: #101e45;
+        letter-spacing: -1px;
+    }
+
+    input {
+        margin-left: 23px !important;
+    }
+
+    .card-title {
+        font-size: 30px !important;
+        margin-top: -35px !important;
+        color: lightgray;
+        font-weight: bold;
+        padding: 0px !important;
+        font-family: latothin;
+    }
+
+    .ficility-header {
+        width: 100% !important;
+        margin-top: 35px !important;
+        text-align: center !important;
+    }
+
+    .form-horizontal .form-group {
+        margin-right: 0px !important;
+        margin-left: -10px !important;
+    }
+
+    .center-header {
+        text-align: center !important;
+        width: 50% !important;
+    }
+    .logout {
+        content: "\25AE" !important;
+        font-family: FontAwesome !important;
+        left: 0px !important;
+        position: relative !important;
+        top: 0 !important;
+        margin-top: 0px !important;
+        color: #546e7a;
+        text-decoration: none;
+    }
+    .block-header {
+        padding: 40px 0px !important;
+        width: 100%;
+    }
+    .phone-center {
+        margin-left: 50% !important;
+    }
+
+    #sidebar-wrapper {
+        display: none;
+    }
+
+    .padding-5 {
+        padding-top: 5px !important;
+    }
+
+    .primery-color {
+        color: #546e7a !important;
+    }
+
+    a {
+        color: #546e7a !important;
+        text-decoration: none;
+        background-color: transparent;
+        -webkit-text-decoration-skip: objects;
+    }
+
+    .menu-item {
+        color: #546e7a !important;
+        position: relative;
+        padding: 0px 10px !important;
+    }
+}
+
+.input-label {
+    color: white !important;
+}
 footer {
     position: absolute;
     bottom: 0;
@@ -85,8 +241,8 @@ body {
     background-color: #FFFFFF;
     color: #fff;
     background-repeat: repeat;
-    width: 650px;
-    height: 650px;
+    width: 550px;
+    height: 550px;
     margin-left: -80px;
     border-radius: 20px;
 }
@@ -97,12 +253,9 @@ body {
 }
 
 .login-right-div {
-    /*background-color: #bd9c62;*/
-    /*background-color: #9B722A;*/
     background-color: #101e45;
-    width: 650px;
     border-radius: 20px;
-    height: 650px;
+    height: 100%;
 }
 
     .login-right-div input {
