@@ -20,6 +20,9 @@ namespace TheProject.ReportWebApplication.Models
         public int CreatedUserId { get; set; }
         public DateTime ModifiedDate { get; set; }
         public int? ModifiedUserId { get; set; }
+        public decimal NoOfImprovements { get; set; }
+        public double ImprovementsSize { get; set; }
+        public double OccupationStatus { get; set; }
     }
     
 }

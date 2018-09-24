@@ -7,9 +7,12 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/fontawesome")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/canvasjs")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -29,9 +32,9 @@
     </div>
     <div class="container body-content">
     </div>
-    <div id="wrapper">
+    <div id="wrapper" class="row">
         <!-- Sidebar -->
-        <div id="sidebar-wrapper" class="sidebar">
+        <div id="sidebar-wrapper" class="sidebar col-lg-2 col-md-2 col-sm-12">
             <div class="menu">
                 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: calc(100vh - 65px);">
                     <ul class="list" style="overflow: hidden; width: auto; height: calc(100vh - 65px); list-style: none;">
@@ -44,7 +47,7 @@
                             </div>
                         </li>
                         <li style="margin-bottom: -10px;"><a class="waves-effect waves-block" href="#"><i class="fa fa-home sidebar-icon"></i><span>Dashboard</span></a> </li>
-                        <li style="margin-bottom: -10px;"><a class="waves-effect waves-block" href="#"><i class="fa fa-file-o sidebar-icon"></i>Reports</a> </li>
+                        <li style="margin-bottom: -10px;"><a class="waves-effect waves-block" href="#"><i class="fa fa-file-o sidebar-icon"></i> @Html.ActionLink("Reports", "Index", "Facility")</a> </li>
                     </ul>
                 </div>
             </div>
@@ -52,7 +55,7 @@
                 <p>&copy; @DateTime.Now.Year - ZCS Asset Management</p>
             </footer>
         </div>
-        <div class="container body-content">
+        <div class="container body-content  col-lg-10 col-md-10 col-sm-12">
             @RenderBody()            
         </div>
     </div>

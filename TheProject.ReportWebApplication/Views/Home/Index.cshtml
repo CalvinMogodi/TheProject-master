@@ -1,33 +1,226 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
 <div class="block-header">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12">
-            <h2>Dashboard</h2>            
+            <h2>Dashboard</h2>
         </div>
         <div class="col-lg-8 col-md-8 col-sm-12">
-            @using (Html.BeginForm("DownloadAllFacility", "Facility", FormMethod.Post))
+            @*@using (Html.BeginForm("NewChart", "Home", FormMethod.Post))
             {
-                @Html.AntiForgeryToken()
+                @Html.AntiForgeryToken()*@
 
                 <div class="form-horizontal">
                     <br />
                     <div class="form-group">
                         <label class="control-label col-lg-2 col-md-2 col-sm-12">Region</label>
                         <div class="col-lg-4 col-md-4 col-sm-12">
-                            @Html.DropDownList("Region", (SelectList)ViewBag.Regions, string.Empty, new { @class = "form-control" })
+                            @Html.DropDownList("Region", (SelectList)ViewBag.Regions, string.Empty, new { @class = "form-control", @id = "dropDownId" })
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-12">
-                            <input type="submit" value="Filter By Region" class="btn btn-success" />
+                            <input type="submit" id="filterByRegionBtn" value="Filter By Region" class="btn btn-success" />
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-12">
-                            <input type="submit" value="Claer" class="btn btn-light" />
+                            <input type="submit" id="claerBtn" value="Claer" class="btn btn-light" />
                         </div>
                     </div>
                 </div>
-            }
+          @*  }*@
         </div>
     </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row clearfix">
+        <div class="col-lg-3 col-md-6">
+            <div class="dashboard-card" style="color:white; background-color: orange; text-align: center;">
+                <div class="card-body">
+                    <h3 style="color:white !important;" class="m-b-0 number count-to" data-from="0" data-to="1600" data-speed="2000" data-fresh-interval="700" id="PropertiesCount">@ViewData["PropertiesCount"]</h3>
+                                        <p class="text-muted">Number of properties</p>
+                                        <div class="progress">
+                                            <div class="progress-bar l-blush" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100"  style="width: @ViewData["PropertiesPercentage"]%;"></div>
+                                        </div>
+                                        <small class="percentage"  id="PropertiesPercentage">Signed Off @ViewData["PropertiesPercentage"]%</small>
+</div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="dashboard-card" style="background-color: green; color:#FFFFFF">
+                <div class="card-body">
+                    <div class="card info-box-2 hover-zoom-effect twitter-widget">
+                        <div class="dashboard-content" style="color:#FFFFFF">
+                            <i style="font-size: xx-large;" class="fa fa-building" aria-hidden="true"></i>
+                            <div class="dashboard-number"style="color:#FFFFFF" id="noOfImprovements">@ViewData["NoOfImprovements"]</div>
+                            <div class="dashboard-text"style="color:#FFFFFF">Number of improvements</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="dashboard-card" style="background-color: orangered; color:#FFFFFF">
+                <div class="card-body">
+                    <div class="card info-box-2 hover-zoom-effect twitter-widget">                        
+                        <div class="dashboard-content" style="color:#FFFFFF">
+                            <div class="dashboard-icon"><i style="font-size: xx-large;" class="fa fa-level-up" aria-hidden="true"></i></div>
+                            <div class="dashboard-number" style="color:#FFFFFF" id="ImprovementsSize">@ViewData["ImprovementsSize"]</div>
+                            <div class="dashboard-text" style="color:#FFFFFF">Size of improvements</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="dashboard-card" style="background-color: purple; color:#FFFFFF">
+                <div class="card-body">
+                    <div class="card info-box-2 hover-zoom-effect twitter-widget">                        
+                        <div class="dashboard-content" style="color:#FFFFFF" >
+                            <div class="dashboard-icon"><i style="font-size: xx-large; color:#FFFFFF" class="fa fa-arrows-h" aria-hidden="true"></i></div>
+                            <div class="dashboard-number" style="color:#FFFFFF" id="OccupationStatus">@ViewData["OccupationStatus"]</div>
+                            <div class="dashboard-text" style="color:#FFFFFF">Occupation Status</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div Style="font-family: Corbel; font-size: small ;text-align:center " class="row">
+                <div style="width:100%;height:100%">
+                    <canvas id="myChart" style="padding: 0;margin: auto;display: block; "> </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $('#claerBtn').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Home/NewChart",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (chData) {
+                var aData = chData;
+                $("#noOfImprovements").empty().append(aData[3]).find('#noOfImprovements');
+                $("#PropertiesCount").empty().append(aData[4]).find('#PropertiesCount');
+                $("#ImprovementsSize").empty().append(aData[5]).find('#ImprovementsSize');
+                $("#OccupationStatus").empty().append(aData[6]).find('#OccupationStatus');
+                $("#PropertiesPercentage").empty().append(aData[7]).find('#PropertiesPercentage');
+                var aLabels = aData[0];
+                var aDatasets1 = aData[1];
+                var dataT = {
+                    labels: aLabels,
+                    datasets: [{
+                        label: "Test Data",
+                        data: aDatasets1,
+                        fill: true,
+                        backgroundColor: aData[2],
+                        borderColor: aData[2],
+                        borderWidth: 1
+                    }]
+                };
+                var ctx = $("#myChart").get(0).getContext("2d");
+                var myNewChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: dataT,
+                    options: {
+                        responsive: true,
+                        title: { display: true, text: 'Property Type / Zoning' },
+                        legend: { position: 'bottom' },
+                        scales: {
+                            xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
+                            yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
+                        },
+                    }
+                });
+            }
+        });
+    });
+
+    $('#filterByRegionBtn').click(function () {
+        var selectedRegion = $('#dropDownId :selected').text();
+        $.ajax({
+            type: "POST",
+            url: "/Home/NewChart",
+            dataType: "json",
+            data: { selectedRegion: selectedRegion },
+            success: function (chData) {               
+                var aData = chData;
+                $("#noOfImprovements").empty().append(aData[3]).find('#noOfImprovements');
+                $("#PropertiesCount").empty().append(aData[4]).find('#PropertiesCount');
+                $("#ImprovementsSize").empty().append(aData[5]).find('#ImprovementsSize');
+                $("#OccupationStatus").empty().append(aData[6]).find('#OccupationStatus');
+                $("#PropertiesPercentage").empty().append(aData[7]).find('#PropertiesPercentage');
+                var aLabels = aData[0];
+                var aDatasets1 = aData[1];
+                var dataT = {
+                    labels: aLabels,
+                    datasets: [{
+                        label: "Test Data",
+                        data: aDatasets1,
+                        fill: true,
+                        backgroundColor: aData[2],
+                        borderColor: aData[2],
+                        borderWidth: 1
+                    }]
+                };
+                var ctx = $("#myChart").get(0).getContext("2d");
+                var myNewChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: dataT,
+                    options: {
+                        responsive: true,
+                        title: { display: true, text: 'Property Type / Zoning' },
+                        legend: { position: 'bottom' },
+                        scales: {
+                            xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
+                            yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
+                        },
+                    }
+                });
+            }
+        });
+    });
+    $.ajax({
+        type: "POST",
+        url: "/Home/NewChart",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (chData) {
+            var aData = chData;
+            var aLabels = aData[0];
+            var aDatasets1 = aData[1];
+            var dataT = {
+                labels: aLabels,
+                datasets: [{
+                    label: "Test Data",
+                    data: aDatasets1,
+                    fill: true,
+                    backgroundColor: aData[2],
+                    borderColor: aData[2],
+                    borderWidth: 1
+                }]
+            };
+            var ctx = $("#myChart").get(0).getContext("2d");
+            var myNewChart = new Chart(ctx, {
+                type: 'bar',
+                data: dataT,
+                options: {
+                    responsive: true,
+                    title: { display: true, text: 'Property Type / Zoning' },
+                    legend: { position: 'bottom' },
+                    scales: {
+                        xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
+                        yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
+                    },
+                }
+            });
+        }
+    });
+</script>
