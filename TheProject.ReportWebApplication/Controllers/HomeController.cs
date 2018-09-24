@@ -42,6 +42,7 @@ namespace TheProject.ReportWebApplication.Controllers
             ViewData["OccupationStatus"] = String.Format("{0:.##}", (div1));
 
             ViewData["PropertiesPercentage"] = propertiesPercentage;
+
             ViewBag.Regions = new SelectList(regions);
             homeModel.ImprovementsSize = SubmittedFacilities.Sum(f => f.ImprovementsSize);
             homeModel.PropertiesCount = SubmittedFacilities.Count;
@@ -132,7 +133,12 @@ namespace TheProject.ReportWebApplication.Controllers
             propertiesPercentage = propertiesPercentage.Replace(",", ".");
             var NoOfImprovements = SubmittedFacilities.Sum(f => f.NoOfImprovements);
             var ImprovementsSize = SubmittedFacilities.Sum(f => f.ImprovementsSize);
-            var OccupationStatus = String.Format("{0:.##}", (SubmittedFacilities.Sum(f => f.OccupationStatus)));
+
+            decimal value3 = Convert.ToDecimal(SubmittedFacilities.Sum(f => f.OccupationStatus));
+            decimal value4 = SubmittedFacilities.Sum(f => f.NoOfImprovements);
+            decimal div1 = decimal.Divide(value3, value4);
+
+            var OccupationStatus = String.Format("{0:.##}", (div1));
             var PropertiesPercentage = propertiesPercentage;
 
             List<DataPoint> dataPoints = GetZoning(SubmittedFacilities);
