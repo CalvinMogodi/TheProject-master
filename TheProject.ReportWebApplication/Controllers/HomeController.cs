@@ -38,6 +38,7 @@ namespace TheProject.ReportWebApplication.Controllers
 
             ViewData["PropertiesPercentage"] = propertiesPercentage;
             ViewBag.Regions = new SelectList(regions);
+
             return View();
         }
 
@@ -84,6 +85,7 @@ namespace TheProject.ReportWebApplication.Controllers
             
             List<DataPoint> dataPoints = GetZoning(SubmittedFacilities);
             List<string> colors = new List<string>();
+
             var random = new Random();
             foreach (var item in dataPoints)
             {
@@ -116,23 +118,41 @@ namespace TheProject.ReportWebApplication.Controllers
             return Json(iData, JsonRequestBehavior.AllowGet);
         }
 
+        private bool StringIsInList(List<string> list, string str) {
+            foreach (var item in list)
+            {
+                if (!string.IsNullOrEmpty(str)) {
+                    if (item.ToLower().Trim() == str.ToLower().Trim())
+                        return true;
+                }
+                
+            }
+
+            return false;
+        } 
+
         private List<DataPoint> GetZoning(List<Facility> facilities) {
 
             List<DataPoint> dataPoints = new List<DataPoint>();
             List<string> zonings = facilities.Select(d => d.Zoning).Distinct().ToList();
+            List<string> sortedZonings = new List<string>();
+            foreach (var item in zonings)
+            {
+                if (!StringIsInList(sortedZonings, item))
+                    sortedZonings.Add(item);
+            }
             List<Facility> newfacilities = new List<Facility>();
             foreach (var item in facilities)
             {
                 if (!string.IsNullOrEmpty(item.Zoning))
                 {
-                    newfacilities.Add(item);
+                    newfacilities.Add(item);                    
                 }
                 }
-            foreach (var zoning in zonings)
+            foreach (var zoning in sortedZonings)
             {
                 if (!string.IsNullOrEmpty(zoning))
                 {
-
                     var zoningCount = newfacilities.Where(d => d.Zoning.ToLower().Trim() == zoning.ToLower().Trim()).ToList();
                     dataPoints.Add(new DataPoint(zoning, zoningCount.Count));
                 }                

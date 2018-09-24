@@ -11,6 +11,17 @@
     font-weight: 400;
 }
 
+ #myChart {
+        padding: 0px;
+        margin: auto;
+        display: block;
+        height: 450px !important;
+        width: 900px !important;
+    }
+
+.margin-top-25{
+    margin-top: 25px !important;
+}
 @media(min-width: 768px) {
     .left-div{ 
         height: 550px; 
@@ -207,8 +218,9 @@ textarea {
 .logout {
     content: "\25AE"; /* this is your text. You can also use UTF-8 character codes as I do here */
     font-family: FontAwesome;
-    left: -5px;
-    position: absolute;
+    left: 0px;
+    position: initial;
+    float: right;
     top: 0;
     margin-top: 15px;
     color: #546e7a;
@@ -286,10 +298,15 @@ body {
     background-color: #06c5ac;
     border-color: #06c5ac;
 }
+.login-right {
+    margin-left: inherit;
+    margin-right: -35px;
+}
 
 @media (min-width: 1200px) {
     .login-right {
         margin-left: inherit;
+        margin-right: -35px;
     }
 
     .margin-top-20 {
@@ -510,6 +527,7 @@ a {
 }
 
 .waves-effect {
+    padding: 14px 10px;
     position: relative;
     cursor: pointer;
     display: inline-block;

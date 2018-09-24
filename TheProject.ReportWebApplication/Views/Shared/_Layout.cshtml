@@ -36,8 +36,8 @@
             </div>
 
             <ul class="collapse list" style="overflow: hidden; width: auto; height: calc(100vh - 65px); list-style: none;" id="navbarToggleExternalContent">
-                <li><a class="waves-effect waves-block menu-item" href="#"><i class="fa fa-home sidebar-icon"></i><span class="primery-color">@Html.ActionLink("Dashboard", "Index", "Home")</span></a> </li>
-                <li><a class="waves-effect waves-block menu-item" href="#"><i class="fa fa-file-o sidebar-icon"></i><span class="primery-color">@Html.ActionLink("Reports", "Index", "Facility")</span> </a> </li>
+                <li><label class="waves-effect waves-block menu-item"><i class="fa fa-home sidebar-icon"></i><span class="primery-color">@Html.ActionLink("Dashboard", "Index", "Home")</span></label> </li>
+                <li><label class="waves-effect waves-block menu-item"><i class="fa fa-file-o sidebar-icon"></i><span class="primery-color">@Html.ActionLink("Reports", "Index", "Facility")</span> </label> </li>
             </ul>
         </div>
     </div>
@@ -57,12 +57,12 @@
                                 </div>
                             </div>
                         </li>
-                        <li style="margin-bottom: -10px;"><a class="waves-effect waves-block" href="#"><i class="fa fa-home sidebar-icon"></i><span>Dashboard</span></a> </li>
-                        <li style="margin-bottom: -10px;"><a class="waves-effect waves-block" href="#"><i class="fa fa-file-o sidebar-icon"></i> @Html.ActionLink("Reports", "Index", "Facility")</a> </li>
+                        <li style="margin-bottom: -10px;"><label class="waves-effect waves-block"><i class="fa fa-home sidebar-icon"></i><span><span class="primery-color">@Html.ActionLink("Dashboard", "Index", "Home")</span></span></label> </li>
+                        <li style="margin-bottom: -10px;"><label class="waves-effect waves-block"><i class="fa fa-file-o sidebar-icon"></i> @Html.ActionLink("Reports", "Index", "Facility")</label> </li>
                     </ul>
                 </div>
             </div>
-            <footer style="text-align:center">
+            <footer style="text-align:center;font-size: 11px">
                 <p>&copy; @DateTime.Now.Year - ZCS Asset Management</p>
             </footer>
         </div>
