@@ -123,14 +123,18 @@
                     }]
                 };
                 var ctx = $("#myChart").get(0).getContext("2d");
+                Chart.defaults.global.defaultFontColor = 'white';
                 var myNewChart = new Chart(ctx, {
-                    type: 'doughnut',
+                    type: 'bar',
                     data: dataT,
                     options: {
                         responsive: true,
                         title: { display: true, text: 'Property Type / Zoning' },
-                        legend: { position: 'bottom' },
-                       
+                        legend: { position: 'bottom', fontColor: 'white' },
+                        scales: {
+                            xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
+                            yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
+                        },
                     }
                 });
             }
@@ -165,13 +169,14 @@
                     }]
                 };
                 var ctx = $("#myChart").get(0).getContext("2d");
+                Chart.defaults.global.defaultFontColor = 'white';
                 var myNewChart = new Chart(ctx, {
                     type: 'bar',
                     data: dataT,
                     options: {
                         responsive: true,
                         title: { display: true, text: 'Property Type / Zoning' },
-                        legend: { position: 'bottom' },
+                        legend: { position: 'bottom', fontColor: 'white' },
                         scales: {
                             xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
                             yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
@@ -204,16 +209,16 @@
             var ctx = $("#myChart").get(0).getContext("2d");
             Chart.defaults.global.defaultFontColor = 'white';
             var myNewChart = new Chart(ctx, {
-                type: 'doughnut',
+                type: 'bar',
                 data: dataT,
                 options: {
                     responsive: true,
                     title: { display: true, text: 'Property Type / Zoning' },
                     legend: { position: 'bottom', fontColor: 'white' },
-                    //scales: {
-                    //    xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
-                    //    yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
-                    //},
+                    scales: {
+                        xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
+                        yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
+                    },
                 }
             });
         }

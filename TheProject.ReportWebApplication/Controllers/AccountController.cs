@@ -48,12 +48,11 @@ namespace TheProject.ReportWebApplication.Controllers
                 return View(model);
             }
 
-           //User result = userService.Login(model.Email, model.Password);
-            //var resulst = userService.GetBuildingByFacilityId();
-            //if (result != null)
-            //{
+            User result = userService.Login(model.Email, model.Password);
+            if (result != null)
+            {
                 return RedirectToLocal(returnUrl);
-            //}
+            }
             ModelState.AddModelError("", "Invalid login attempt.");
             return View(model);
         }

@@ -59,15 +59,15 @@ namespace TheProject.ReportWebApplication.Controllers
                 {
                     if (!string.IsNullOrEmpty(item.Region))
                     {
-                        if(item.Region.ToLower().Trim() == selectedRegion.ToLower().Trim())
+                        if (item.Region.ToLower().Trim() == selectedRegion.ToLower().Trim())
                         {
                             sortedFacilities.Add(item);
-                        }       
-                       
+                        }
+
                     }
-                  
+
                 }
-                
+
                 facilities = sortedFacilities;
             }
 
@@ -82,7 +82,7 @@ namespace TheProject.ReportWebApplication.Controllers
             var ImprovementsSize = SubmittedFacilities.Sum(f => f.ImprovementsSize);
             var OccupationStatus = String.Format("{0:.##}", (SubmittedFacilities.Sum(f => f.OccupationStatus)));
             var PropertiesPercentage = propertiesPercentage;
-            
+
             List<DataPoint> dataPoints = GetZoning(SubmittedFacilities);
             List<string> colors = new List<string>();
 
@@ -94,12 +94,12 @@ namespace TheProject.ReportWebApplication.Controllers
                 dr["Credit"] = item.Y;
                 dt.Rows.Add(dr);
 
-                
+
                 var color = string.Format("#{0:X6}", random.Next(0x1000000)); // = "#A197B9"
                 colors.Add(color);
             }
 
-           
+
             //Looping and extracting each DataColumn to List<Object>  
             foreach (DataColumn dc in dt.Columns)
             {

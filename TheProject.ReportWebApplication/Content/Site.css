@@ -11,14 +11,6 @@
     font-weight: 400;
 }
 
- #myChart {
-        padding: 0px;
-        margin: auto;
-        display: block;
-        height: 450px !important;
-        width: 900px !important;
-    }
-
 .margin-top-25{
     margin-top: 25px !important;
 }
@@ -551,7 +543,7 @@ a {
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     border-radius: 50%;
-    width: 80px;
+    width: 100px;
     vertical-align: bottom !important;
     border: 3px solid #fff;
     box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.3);
