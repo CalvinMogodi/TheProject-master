@@ -51,7 +51,7 @@
     }
 
     .margin-55 {
-        margin-left: -55px !important;
+        margin-left: 0px !important; 
         display: flex !important;
     }
     .login-left-div {
@@ -121,7 +121,6 @@
 
     .center-header {
         text-align: center !important;
-        width: 50% !important;
     }
     .logout {
         content: "\25AE" !important;
@@ -807,6 +806,11 @@ p {
         font-size: 26px;
     }
 
+
+.propertyDescription{
+    color: white;
+    font-weight: initial;
+}
 
 #logo1 {
     display: inline-block;

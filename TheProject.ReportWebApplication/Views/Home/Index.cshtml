@@ -54,7 +54,7 @@
                 <div class="card-body" style="color:#FFFFFF; text-align: center; padding: 7px 10px;">
                     <div class="dashboard-icon"><i style="font-size: xx-large;" class="fa fa-level-up" aria-hidden="true"></i></div>
                     <div class="dashboard-number" style="color:#FFFFFF"><span id="ImprovementsSize">@Model.ImprovementsSize</span><span>m&#178;</span></div>
-                    <div class="dashboard-text" style="color:#FFFFFF">Size of improvements</div>               
+                    <div class="dashboard-text" style="color:#FFFFFF">Size of improvements</div>
                 </div>
             </div>
         </div>
@@ -63,83 +63,103 @@
                 <div class="card-body" style="color:#FFFFFF; text-align: center; padding: 7px 10px;">
                     <div class="dashboard-icon"><i style="font-size: xx-large; color:#FFFFFF" class="fa fa-arrows-h" aria-hidden="true"></i></div>
                     <div class="dashboard-number" style="color:#FFFFFF"><span id="OccupationStatus">@Model.OccupationStatus</span><span>%</span></div>
-                    <div class="dashboard-text" style="color:#FFFFFF">Occupation Status</div>               
+                    <div class="dashboard-text" style="color:#FFFFFF">Occupation Status</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="clearfix margin-55">        
+    <div class="container-fluid" style="background: #101e45;border-radius: .55rem;margin-bottom: 30px;transition: .5s; border: 0; position: relative; width: 100%; box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1);">
+        <div class="row clearfix" style="margin-bottom: 15px;">
+            <div class="col-lg-3 col-md-3 col-sm-12 width-100" style="text-align: center;">
+                <canvas id="demo" width="200" height="200"></canvas><br />
+                <label class="propertyDescription" style="color: yellow">Public open space</label>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 width-100" style="text-align: center;">
+                <canvas id="demo1" width="200" height="200"></canvas><br />
+                <label class="propertyDescription" style="color: red">Roads</label>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 width-100" style="text-align: center;">
+                <canvas id="demo2" width="200" height="200"></canvas><br />
+                <label class="propertyDescription" style="color: white">Agriculture</label>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 width-100" style="text-align: center;">
+                <canvas id="demo3" width="200" height="200"></canvas><br />
+                <label class="propertyDescription" style="color: orange">Special</label>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix margin-55">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 width-100">
                 <label class="header2">Property Type / Zoning</label>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 width-100" style="text-align: right;">
+            <div class="col-lg-6 col-md-6 col-sm-12 width-100" style="text-align: right;">
                 <label class="label-underline" id="showTableView">Table View</label>
                 <label class="label-underline" id="showGraphView">Graph View</label>
             </div>
         </div>
-
-        <div class="col-lg-12" id="propertyTypeTableDiv">
-            <div class="col-lg-12" style="background-color: lightgray;border-radius: .55rem; margin-bottom: 30px; transition: .5s; border: 0;    padding: 15px;
+    </div>
+        <div class="clearfix margin-55">
+            <div class="col-lg-12" id="propertyTypeTableDiv">
+                <div class="col-lg-12" style="background-color: lightgray;border-radius: .55rem; margin-bottom: 30px; transition: .5s; border: 0;    padding: 15px;
                         position: relative;
                         width: 100%;
                             box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1);">
 
-                <table class="table table-hover" id="records_table">
-                    <thead style="background-color: #101e45;color: white;">
-                        <tr>
-                            <th>Property Type</th>
-                            <th>Signed Off</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                    <table class="table table-hover" id="records_table">
+                        <thead style="background-color: #101e45;color: white;">
+                            <tr>
+                                <th>Property Type</th>
+                                <th>Signed Off</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-12" id="propertyTypeGraphDiv">
-            <div class="col-lg-12" style="background-color: darkturquoise;border-radius: .55rem; margin-bottom: 30px; transition: .5s; border: 0;    padding: 15px;
+            <div class="col-lg-12" id="propertyTypeGraphDiv">
+                <div class="col-lg-12" style="background-color: darkturquoise;border-radius: .55rem; margin-bottom: 30px; transition: .5s; border: 0;    padding: 15px;
                         position: relative;
                         width: 100%;
                             box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1);">
-                <div Style="font-family: Corbel; font-size: small ;text-align:center ; padding: 15px;" class="row">
-                    <div id="graph-container" style="width:100%;height:100%;margin-left: 5px;">
-                        <canvas id="myChart" style="padding: 0;margin: auto;display: block; "> </canvas>
+                    <div Style="font-family: Corbel; font-size: small ;text-align:center ; padding: 15px;" class="row">
+                        <div id="graph-container" style="width:100%;height:100%;margin-left: 5px;">
+                            <canvas id="myChart" style="padding: 0;margin: auto;display: block; "> </canvas>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-@*<div class="property-type-header">
-            <h2><small>Property Type</small></h2>
-        </div>
-        <div class="row property-type">
+    @*<div class="property-type-header">
+                <h2><small>Property Type</small></h2>
+            </div>
+            <div class="row property-type">
 
-            <br />
-            @foreach (var item in Model.DataPoints)
-                {
-                    <div class="row property-type-row">
-                        <div class="property-type-card col-lg-12 col-md-12 col-sm-12" style="background-color: @item.Color;">
-                            <div class="dashboard-content" style="color:#FFFFFF">
-                                <div class="dashboard-number" style="color:#FFFFFF"><span>@item.Y</span></div>
-                                <div class="dashboard-text" style="color:#FFFFFF">@item.Label</div>
+                <br />
+                @foreach (var item in Model.DataPoints)
+                    {
+                        <div class="row property-type-row">
+                            <div class="property-type-card col-lg-12 col-md-12 col-sm-12" style="background-color: @item.Color;">
+                                <div class="dashboard-content" style="color:#FFFFFF">
+                                    <div class="dashboard-number" style="color:#FFFFFF"><span>@item.Y</span></div>
+                                    <div class="dashboard-text" style="color:#FFFFFF">@item.Label</div>
+                                </div>
                             </div>
                         </div>
+                    }*
+                <div Style="font-family: Corbel; font-size: small ;text-align:center ; padding: 15px;" class="row">
+                    <div style="width:100%;height:100%;margin-left: 5px;">
+                        <canvas id="myChart" style="padding: 0;margin: auto;display: block; "> </canvas>
                     </div>
-                }*
-            <div Style="font-family: Corbel; font-size: small ;text-align:center ; padding: 15px;" class="row">
-                <div style="width:100%;height:100%;margin-left: 5px;">
-                    <canvas id="myChart" style="padding: 0;margin: auto;display: block; "> </canvas>
                 </div>
             </div>
-        </div>
-    </div>*@
+        </div>*@
 
-    <script>             
-
+    <script>
         $("#propertyTypeTableDiv").fadeIn();
         $("#propertyTypeGraphDiv").fadeOut();
 
@@ -183,7 +203,23 @@
                     };
                     $('#records_table tbody').empty();
                     var trHTML = '';
+                    $("#demo").gauge(0, { min: 0, max: 100, unit: "/0", color: "yellow", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                    $("#demo1").gauge(0, { min: 0, max: 100, unit: "/0", color: "red", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                    $("#demo2").gauge(0, { min: 0, max: 100, unit: "/0", color: "white", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                    $("#demo3").gauge(0, { min: 0, max: 100, unit: "/0", color: "orange", colorAlpha: 1, bgcolor: "#696969", type: "default" });
                     $.each(aData[8], function (i, item) {
+                        if (item.Label.toLowerCase().trim() == 'public open space') {
+                            $("#demo").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "yellow", colorAlpha: 3, bgcolor: "#696969", type: "default" });
+                        }
+                        if (item.Label.toLowerCase().trim() == 'roads') {
+                            $("#demo1").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "red", colorAlpha: 2, bgcolor: "#696969", type: "default" });
+                        }
+                        if (item.Label.toLowerCase().trim() == 'agriculture') {
+                            $("#demo2").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "white", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                        }
+                        if (item.Label.toLowerCase().trim() == 'special') {
+                            $("#demo3").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "orange", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                        }
                         trHTML += '<tr><td>' + item.Label + '</td><td>' + item.Y + '</td><td>' + item.Total + '</td></tr>';
                     });
                     $('#records_table').append(trHTML);
@@ -237,7 +273,23 @@
                     };
                     $('#records_table tbody').empty();
                     var trHTML = '';
+                    $("#demo").gauge(0, { min: 0, max: 100, unit: "/0", color: "yellow", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                    $("#demo1").gauge(0, { min: 0, max: 100, unit: "/0", color: "red", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                    $("#demo2").gauge(0, { min: 0, max: 100, unit: "/0", color: "white", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                    $("#demo3").gauge(0, { min: 0, max: 100, unit: "/0", color: "orange", colorAlpha: 1, bgcolor: "#696969", type: "default" });
                     $.each(aData[8], function (i, item) {
+                        if (item.Label.toLowerCase().trim() == 'public open space') {
+                            $("#demo").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "yellow", colorAlpha: 3, bgcolor: "#696969", type: "default" });
+                        }
+                        if (item.Label.toLowerCase().trim() == 'roads') {
+                            $("#demo1").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "red", colorAlpha: 2, bgcolor: "#696969", type: "default" });
+                        }
+                        if (item.Label.toLowerCase().trim() == 'agriculture') {
+                            $("#demo2").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "white", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                        }
+                        if (item.Label.toLowerCase().trim() == 'special') {
+                            $("#demo3").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "orange", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                        }
                         trHTML += '<tr><td>' + item.Label + '</td><td>' + item.Y + '</td><td>' + item.Total + '</td></tr>';
                     });
                     $('#records_table').append(trHTML);
@@ -283,10 +335,25 @@
                 };
                 $('#records_table tbody').empty();
                 var trHTML = '';
+                $("#demo").gauge(0, { min: 0, max: 100, unit: "/0", color: "yellow", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                $("#demo1").gauge(0, { min: 0, max: 100, unit: "/0", color: "red", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                $("#demo2").gauge(0, { min: 0, max: 100, unit: "/0", color: "white", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                $("#demo3").gauge(0, { min: 0, max: 100, unit: "/0", color: "orange", colorAlpha: 1, bgcolor: "#696969", type: "default" });
                 $.each(aData[8], function (i, item) {
-                    trHTML += '<tr><td>' + item.Label + '</td><td>' + item.Y + '</td><td>' + item.Total + '</td> <td> <canvas id="' + item.Id + '" width="60" height="60"></canvas></td></tr>';
-                    $(item.Id).gauge(item.Percentage, { min: 0, max: 100, unit: "%", color: item.Color, colorAlpha: 1, bgcolor: "#222", type: "halfcircle" });
-                });                
+                    if (item.Label.toLowerCase().trim() == 'public open space') {
+                        $("#demo").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "yellow", colorAlpha: 3, bgcolor: "#696969", type: "default" });
+                    }
+                    if (item.Label.toLowerCase().trim() == 'roads') {
+                        $("#demo1").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "red", colorAlpha: 2, bgcolor: "#696969", type: "default" });
+                    }
+                    if (item.Label.toLowerCase().trim() == 'agriculture') {
+                        $("#demo2").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "white", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                    }
+                    if (item.Label.toLowerCase().trim() == 'special') {
+                        $("#demo3").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "orange", colorAlpha: 1, bgcolor: "#696969", type: "default" });
+                    }
+                    trHTML += '<tr><td>' + item.Label + '</td><td>' + item.Y + '</td><td>' + item.Total + '</td></tr>';
+                });
                 $('#records_table').append(trHTML);
                 var ctx = $("#myChart").get(0).getContext("2d");
                 Chart.defaults.global.defaultFontColor = 'white';

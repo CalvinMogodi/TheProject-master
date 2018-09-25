@@ -225,9 +225,9 @@ namespace TheProject.ReportWebApplication.Controllers
                 {
                     var zoningCount = newfacilities.Where(d => d.Zoning.ToLower().Trim() == zoning.ToLower().Trim()).ToList();
                     var totalZoningCount = allNewfacilities.Where(d => d.Zoning.ToLower().Trim() == zoning.ToLower().Trim()).ToList();
-                    string id = "#"+ zoning.ToLower().Trim().Replace(" ", "");
-                    decimal percentage = 
-                    dataPoints.Add(new DataPoint(zoning, "", totalZoningCount.Count, zoningCount.Count, ,id));
+                    //string id = "#"+ zoning.ToLower().Trim().Replace(" ", "");
+                    //decimal percentage = 
+                    dataPoints.Add(new DataPoint(zoning, "", totalZoningCount.Count, zoningCount.Count,0 ,""));
                 }
             }
 
