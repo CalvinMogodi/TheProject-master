@@ -31,6 +31,27 @@
         margin-top: 15px !important;
     }
 
+    .carousel-control-next-icon {
+        font-size: xx-large !important;
+        color: white !important;
+        margin-top: -500px !important;
+        padding: 0px !important;
+        float: right !important;
+        cursor: pointer;
+    }
+
+    .carousel-control-prev-icon {
+        z-index:1;
+        position:absolute;
+        font-size: xx-large !important;
+        color: white !important;
+        margin-top: 440px !important;
+        margin-bottom: -540px !important;
+        margin-left: 0px !important;
+        float: left !important;
+        cursor: pointer;
+    }
+
     .claer-btn {
         margin-left: 227px !important;
         margin-top: 15px !important;
@@ -165,6 +186,7 @@
         padding: 0px 10px !important;
     }
 }
+
 
 .input-label {
     color: white !important;
@@ -695,11 +717,6 @@ p {
     color: #616161;
 }
 
-.percentage {
-    color: #424242;
-}
-
-
 .property-type{
     border-radius: .55rem;
     margin-bottom: 30px;
@@ -744,7 +761,7 @@ p {
 }
 
 .text-muted {
-    color: #FFFFFF;
+    color: #FFFFFF !important;
 }
 
 .progress {
@@ -812,46 +829,33 @@ p {
     font-weight: initial;
 }
 
-#logo1 {
-    display: inline-block;
+.carousel-background {
+    background: #101e45;
+    border-radius: .55rem;
+    margin-bottom: 30px;
+    transition: .5s;
+    border: 0;
     position: relative;
+    width: 100%;
+    box-shadow:;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1);
 }
 
-    #logo1 .speedometer1 {
-        width: 80px;
-        height: 80px;
-        border-radius: 100%;
-        border: 20px solid #000;
-        border-right: 20px solid white;
-        border-bottom: 20px solid white;
-        -webkit-transform: rotate(45deg);
-        display: inline-block;
-    }
 
-    #logo1 .needle1 {
-        width: 5px;
-        height: 50px;
-        background: #999999;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        border-top-left-radius: 100%;
-        border-top-right-radius: 100%;
-        display: inline-block;
-        left: 57px;
-        position: absolute;
-        top: 10px;
-    }
+.carousel-control-next-icon {
+    font-size: xx-large !important;
+    color: white !important;
+    margin-top: -150px;
+    padding: 15px;
+    float: right !important;
+    cursor:pointer;
+}
 
-@-webkit-keyframes move {
-    0% {
-        transform: rotate(-90deg);
-    }
-
-    50% {
-        transform: rotate(90deg);
-    }
-
-    100% {
-        transform: rotate(-90deg);
-    }
+.carousel-control-prev-icon {
+    font-size: xx-large !important;
+    color: white !important;
+    margin-top: 110px;
+    margin-left: 15px;
+    float: left !important;
+    cursor: pointer;
 }

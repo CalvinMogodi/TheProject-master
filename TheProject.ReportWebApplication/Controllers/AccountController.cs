@@ -51,7 +51,7 @@ namespace TheProject.ReportWebApplication.Controllers
             //User result = userService.Login(model.Email, model.Password);
             //if (result != null)
             //{
-               return RedirectToLocal(returnUrl);
+            return RedirectToLocal(returnUrl);
             //}
             ModelState.AddModelError("", "Invalid login attempt.");
             return View(model);
