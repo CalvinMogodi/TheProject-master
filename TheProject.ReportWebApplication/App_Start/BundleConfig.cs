@@ -22,15 +22,16 @@ namespace TheProject.ReportWebApplication
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/canvasjs").Include(
-                      "~/Scripts/canvasjs.min.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/Site.css"));
+                      "~/Content/Site.css",
+                      "~/Content/speedometer.css"));
+
             bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
                      "~/Content/font-awesome.css"));
-            
+
+            bundles.Add(new ScriptBundle("~/bundles/speedometer").Include(
+                     "~/Scripts/jquery.gauge.js"));
         }
     }
 }

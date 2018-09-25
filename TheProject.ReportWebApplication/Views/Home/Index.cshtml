@@ -53,7 +53,7 @@
             <div class="dashboard-card" style="background-color: orangered; color:#FFFFFF">
                 <div class="card-body" style="color:#FFFFFF; text-align: center; padding: 7px 10px;">
                     <div class="dashboard-icon"><i style="font-size: xx-large;" class="fa fa-level-up" aria-hidden="true"></i></div>
-                    <div class="dashboard-number" style="color:#FFFFFF"><span id="ImprovementsSize">@Model.ImprovementsSize</span><span>M2</span></div>
+                    <div class="dashboard-number" style="color:#FFFFFF"><span id="ImprovementsSize">@Model.ImprovementsSize</span><span>m&#178;</span></div>
                     <div class="dashboard-text" style="color:#FFFFFF">Size of improvements</div>               
                 </div>
             </div>
@@ -69,17 +69,43 @@
         </div>
     </div>
 
-    <div class="clearfix margin-55">
-        <div class="col-lg-12">
-            <div Style="font-family: Corbel; font-size: small ;text-align:center " class="row">
-                <div class="col-lg-12" style="background-color: darkturquoise;border-radius: .55rem; margin-bottom: 30px; transition: .5s; border: 0;    padding: 15px;
-    position: relative;
-    width: 100%;
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1);">
-                    <div Style="font-family: Corbel; font-size: small ;text-align:center ; padding: 15px;" class="row">
-                        <div id="graph-container" style="width:100%;height:100%;margin-left: 5px;">
-                            <canvas id="myChart" style="padding: 0;margin: auto;display: block; "> </canvas>
-                        </div>
+    <div class="clearfix margin-55">        
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 width-100">
+                <label class="header2">Property Type / Zoning</label>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 width-100" style="text-align: right;">
+                <label class="label-underline" id="showTableView">Table View</label>
+                <label class="label-underline" id="showGraphView">Graph View</label>
+            </div>
+        </div>
+
+        <div class="col-lg-12" id="propertyTypeTableDiv">
+            <div class="col-lg-12" style="background-color: lightgray;border-radius: .55rem; margin-bottom: 30px; transition: .5s; border: 0;    padding: 15px;
+                        position: relative;
+                        width: 100%;
+                            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1);">
+
+                <table class="table table-hover" id="records_table">
+                    <thead style="background-color: #101e45;color: white;">
+                        <tr>
+                            <th>Property Type</th>
+                            <th>Signed Off</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-12" id="propertyTypeGraphDiv">
+            <div class="col-lg-12" style="background-color: darkturquoise;border-radius: .55rem; margin-bottom: 30px; transition: .5s; border: 0;    padding: 15px;
+                        position: relative;
+                        width: 100%;
+                            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1);">
+                <div Style="font-family: Corbel; font-size: small ;text-align:center ; padding: 15px;" class="row">
+                    <div id="graph-container" style="width:100%;height:100%;margin-left: 5px;">
+                        <canvas id="myChart" style="padding: 0;margin: auto;display: block; "> </canvas>
                     </div>
                 </div>
             </div>
@@ -110,9 +136,22 @@
                 </div>
             </div>
         </div>
-    </div>*@*@*@*@
+    </div>*@
 
-    <script>
+    <script>             
+
+        $("#propertyTypeTableDiv").fadeIn();
+        $("#propertyTypeGraphDiv").fadeOut();
+
+        $("#showTableView").click(function () {
+            $("#propertyTypeTableDiv").fadeIn();
+            $("#propertyTypeGraphDiv").fadeOut();
+        });
+
+        $("#showGraphView").click(function () {
+            $("#propertyTypeGraphDiv").fadeIn();
+            $("#propertyTypeTableDiv").fadeOut();
+        });
 
         $('#claerBtn').click(function () {
             $.ajax({
@@ -134,7 +173,7 @@
                     var dataT = {
                         labels: aLabels,
                         datasets: [{
-                            label: "Test Data",
+                            label: "Clear Data",
                             data: aDatasets1,
                             fill: true,
                             backgroundColor: aData[2],
@@ -142,6 +181,12 @@
                             borderWidth: 1
                         }]
                     };
+                    $('#records_table tbody').empty();
+                    var trHTML = '';
+                    $.each(aData[8], function (i, item) {
+                        trHTML += '<tr><td>' + item.Label + '</td><td>' + item.Y + '</td><td>' + item.Total + '</td></tr>';
+                    });
+                    $('#records_table').append(trHTML);
                     var ctx = $("#myChart").get(0).getContext("2d");
                     Chart.defaults.global.defaultFontColor = 'white';
                     var myNewChart = new Chart(ctx, {
@@ -182,7 +227,7 @@
                     var dataT = {
                         labels: aLabels,
                         datasets: [{
-                            label: "Test Data",
+                            label: "Clear Data",
                             data: aDatasets1,
                             fill: true,
                             backgroundColor: aData[2],
@@ -190,11 +235,16 @@
                             borderWidth: 1
                         }]
                     };
+                    $('#records_table tbody').empty();
+                    var trHTML = '';
+                    $.each(aData[8], function (i, item) {
+                        trHTML += '<tr><td>' + item.Label + '</td><td>' + item.Y + '</td><td>' + item.Total + '</td></tr>';
+                    });
+                    $('#records_table').append(trHTML);
                     $('#myChart').remove();
                     $('#graph-container').append('<canvas id="myChart" style="padding: 0;margin: auto;display: block; "> </canvas>');
                     var ctx = $("#myChart").get(0).getContext("2d");
                     Chart.defaults.global.defaultFontColor = 'white';
-
                     var myNewChart = new Chart(ctx, {
                         type: 'bar',
                         data: dataT,
@@ -231,6 +281,13 @@
                         borderWidth: 1
                     }]
                 };
+                $('#records_table tbody').empty();
+                var trHTML = '';
+                $.each(aData[8], function (i, item) {
+                    trHTML += '<tr><td>' + item.Label + '</td><td>' + item.Y + '</td><td>' + item.Total + '</td> <td> <canvas id="' + item.Id + '" width="60" height="60"></canvas></td></tr>';
+                    $(item.Id).gauge(item.Percentage, { min: 0, max: 100, unit: "%", color: item.Color, colorAlpha: 1, bgcolor: "#222", type: "halfcircle" });
+                });                
+                $('#records_table').append(trHTML);
                 var ctx = $("#myChart").get(0).getContext("2d");
                 Chart.defaults.global.defaultFontColor = 'white';
                 var myNewChart = new Chart(ctx, {

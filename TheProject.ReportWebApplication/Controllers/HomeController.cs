@@ -49,7 +49,6 @@ namespace TheProject.ReportWebApplication.Controllers
             homeModel.NoOfImprovements = SubmittedFacilities.Sum(f => f.NoOfImprovements);
             homeModel.OccupationStatus = String.Format("{0:.##}", (div1));
             homeModel.PropertiesPercentage = propertiesPercentage;
-            homeModel.DataPoints = GetDataPoints(selectedRegion, facilities);
 
             return View(homeModel);
         }
@@ -84,12 +83,12 @@ namespace TheProject.ReportWebApplication.Controllers
             var OccupationStatus = String.Format("{0:.##}", (SubmittedFacilities.Sum(f => f.OccupationStatus)));
             var PropertiesPercentage = propertiesPercentage;
 
-            List<DataPoint> dataPoints = GetZoning(SubmittedFacilities);
+            List<DataPoint> dataPoints = GetZoning(SubmittedFacilities, facilities);
             var random = new Random();
 
             foreach (var item in dataPoints)
             {
-                item.Color = string.Format("#{0:X6}", random.Next(0x1000000)); 
+                item.Color = string.Format("#{0:X6}", random.Next(0x1000000));
             }
 
             return dataPoints;
@@ -141,7 +140,7 @@ namespace TheProject.ReportWebApplication.Controllers
             var OccupationStatus = String.Format("{0:.##}", (div1));
             var PropertiesPercentage = propertiesPercentage;
 
-            List<DataPoint> dataPoints = GetZoning(SubmittedFacilities);
+            List<DataPoint> dataPoints = GetZoning(SubmittedFacilities, facilities);
             List<string> colors = new List<string>();
 
             var random = new Random();
@@ -172,24 +171,28 @@ namespace TheProject.ReportWebApplication.Controllers
             iData.Add(ImprovementsSize);
             iData.Add(OccupationStatus);
             iData.Add(PropertiesPercentage);
+            iData.Add(dataPoints);
             //Source data returned as JSON  
             return Json(iData, JsonRequestBehavior.AllowGet);
         }
 
-        private bool StringIsInList(List<string> list, string str) {
+        private bool StringIsInList(List<string> list, string str)
+        {
             foreach (var item in list)
             {
-                if (!string.IsNullOrEmpty(str)) {
+                if (!string.IsNullOrEmpty(str))
+                {
                     if (item.ToLower().Trim() == str.ToLower().Trim())
                         return true;
                 }
-                
+
             }
 
             return false;
-        } 
+        }
 
-        private List<DataPoint> GetZoning(List<Facility> facilities) {
+        private List<DataPoint> GetZoning(List<Facility> facilities, List<Facility> allfacilities)
+        {
 
             List<DataPoint> dataPoints = new List<DataPoint>();
             List<string> zonings = facilities.Select(d => d.Zoning).Distinct().ToList();
@@ -204,18 +207,30 @@ namespace TheProject.ReportWebApplication.Controllers
             {
                 if (!string.IsNullOrEmpty(item.Zoning))
                 {
-                    newfacilities.Add(item);                    
+                    newfacilities.Add(item);
                 }
+            }
+
+            List<Facility> allNewfacilities = new List<Facility>();
+            foreach (var item in allfacilities)
+            {
+                if (!string.IsNullOrEmpty(item.Zoning))
+                {
+                    allNewfacilities.Add(item);
                 }
+            }
             foreach (var zoning in sortedZonings)
             {
                 if (!string.IsNullOrEmpty(zoning))
                 {
                     var zoningCount = newfacilities.Where(d => d.Zoning.ToLower().Trim() == zoning.ToLower().Trim()).ToList();
-                    dataPoints.Add(new DataPoint(zoning, "", "",zoningCount.Count));
-                }                
+                    var totalZoningCount = allNewfacilities.Where(d => d.Zoning.ToLower().Trim() == zoning.ToLower().Trim()).ToList();
+                    string id = "#"+ zoning.ToLower().Trim().Replace(" ", "");
+                    decimal percentage = 
+                    dataPoints.Add(new DataPoint(zoning, "", totalZoningCount.Count, zoningCount.Count, ,id));
+                }
             }
-            
+
             return dataPoints;
         }
 

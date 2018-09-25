@@ -10,12 +10,14 @@ namespace TheProject.ReportWebApplication.Models
     [DataContract]
     public class DataPoint
     {
-        public DataPoint(string label, string color, string icon, double y)
+        public DataPoint(string label, string color, int total, double y, double percentage, string id)
         {
             this.Label = label;
             this.Y = y;
             this.Color = color;
-            this.Icon = icon;
+            this.Total = total;
+            this.Percentage = percentage;
+            this.Id = id;
         }
 
         //Explicitly setting the name to be used while serializing to JSON.
@@ -27,11 +29,19 @@ namespace TheProject.ReportWebApplication.Models
         public string Color = "";
 
         //Explicitly setting the name to be used while serializing to JSON.
-        [DataMember(Name = "icon")]
-        public string Icon = "";
+        [DataMember(Name = "total")]
+        public Nullable<int> Total = null;
 
         //Explicitly setting the name to be used while serializing to JSON.
         [DataMember(Name = "y")]
         public Nullable<double> Y = null;
+
+        //Explicitly setting the name to be used while serializing to JSON.
+        [DataMember(Name = "percentage")]
+        public Nullable<double> Percentage = null;        
+
+        //Explicitly setting the name to be used while serializing to JSON.
+        [DataMember(Name = "id")]
+        public string Id = null;        
     }
 }
