@@ -12,6 +12,8 @@ namespace TheProject.ReportWebApplication.Models
         public double ImprovementsSize { get; set; }
         public string OccupationStatus { get; set; }
         public string PropertiesPercentage { get; set; }
+        public string VacantPercentage { get; set; }
+        
         public List<DataPoint> DataPoints { get; set; }
 
     }

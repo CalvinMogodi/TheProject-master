@@ -42,6 +42,7 @@ namespace TheProject.ReportWebApplication.Controllers
             ViewData["OccupationStatus"] = String.Format("{0:.##}", (div1));
 
             ViewData["PropertiesPercentage"] = propertiesPercentage;
+            homeModel.VacantPercentage = GetUsagePercentage(new List<Facility>());
 
             ViewBag.Regions = new SelectList(regions);
             homeModel.ImprovementsSize = SubmittedFacilities.Sum(f => f.ImprovementsSize);
@@ -171,6 +172,7 @@ namespace TheProject.ReportWebApplication.Controllers
             iData.Add(ImprovementsSize);
             iData.Add(OccupationStatus);
             iData.Add(PropertiesPercentage);
+            iData.Add(GetUsagePercentage(SubmittedFacilities));
             iData.Add(dataPoints);
             //Source data returned as JSON  
             return Json(iData, JsonRequestBehavior.AllowGet);
@@ -264,6 +266,42 @@ namespace TheProject.ReportWebApplication.Controllers
                     });
                 }
                 return facilities;
+            }
+        }
+
+        private string GetUsagePercentage(List<Facility> SubmittedFacilities)
+        {
+            using (ApplicationUnit unit = new ApplicationUnit())
+            {
+                var str = "vacant";
+                var dbfacilities = unit.OriginalDatas.GetAll().Select(f => f).ToList();
+
+                if (SubmittedFacilities.Count > 0)
+                {
+                    var newfacilities = new List<Model.OriginalData>();
+                    foreach (var item in SubmittedFacilities)
+                    {
+                        var facility = dbfacilities.Where(f => f.VENUS_CODE.ToLower().Trim() == item.ClientCode.ToLower().Trim()).FirstOrDefault();
+
+                        if (facility != null)
+                        {
+                            newfacilities.Add(facility);
+                        }
+                    }
+
+                    dbfacilities = newfacilities;
+                }
+                int UsageCount = 0; 
+                foreach (var item in dbfacilities)
+                {
+                    if (item.Usage_Descrip.ToLower().Trim().Contains(str))
+                    {
+                        UsageCount = UsageCount + 1;
+                    }
+                }
+                decimal div = decimal.Divide(UsageCount, dbfacilities.Count);
+                string percentage = String.Format("{0:.##}", (div * 100));
+                return percentage = percentage.Replace(",", ".");
             }
         }
 

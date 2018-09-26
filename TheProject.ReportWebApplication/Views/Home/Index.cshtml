@@ -18,7 +18,7 @@
                     <input type="submit" id="filterByRegionBtn" value="Filter By Region" class="btn btn-success" />
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-12">
-                    <input type="submit" id="claerBtn" value="Claer" class="btn btn-light claer-btn" />
+                    <input type="submit" id="claerBtn" value="Clear" class="btn btn-light claer-btn" />
                 </div>
             </div>
 
@@ -28,19 +28,34 @@
 
 <div class="container-fluid">
     <div class="row clearfix">
-        <div class="col-lg-3 col-md-6 col-sm-12 width-100">
-            <div class="dashboard-card" style="color:white; background-color: #101e45; text-align: center;">
-                <div class="card-body" style="color:#FFFFFF">
-                    <h3 style="color:white !important;" class="m-b-0 number count-to" data-from="0" data-to="1600" data-speed="2000" data-fresh-interval="700" id="PropertiesCount">@Model.PropertiesCount</h3>
-                    <p class="text-muted">Number of properties</p>
-                    <div class="progress">
-                        <div class="progress-bar l-blush" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100" id="propertiesPercentageProgressbar" style="width: @ViewData["PropertiesPercentage"]%;"></div>
-                    </div>
-                    <small class="percentage">Signed Off <span id="PropertiesPercentage">@Model.PropertiesPercentage</span><span>%</span></small>
+        <div class="col-lg-2 col-md-4 col-sm-12 width-100">
+            <div class="dashboard-card" style="background-color: #101e45; color:#FFFFFF">
+                <div class="card-body" style="color:#FFFFFF; text-align: center; padding: 7px 10px;">
+                    <i style="font-size: xx-large;" class="fa fa-building" aria-hidden="true"></i>
+                    <div class="dashboard-number" style="color:#FFFFFF"><span id="PropertiesCount">@Model.PropertiesCount</span></div>
+                    <div class="dashboard-text" style="color:#FFFFFF">Number of properties</div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 width-100">
+        <div class="col-lg-2 col-md-4 col-sm-12 width-100">
+            <div class="dashboard-card" style="background-color: #101e45; color:#FFFFFF">
+                <div class="card-body" style="color:#FFFFFF; text-align: center; padding: 7px 10px;">
+                    <i style="font-size: xx-large;" class="fa fa-hourglass-half" aria-hidden="true"></i>
+                    <div class="dashboard-number" style="color:#FFFFFF"><span id="PropertiesPercentage">@Model.PropertiesPercentage</span>%</div>
+                    <div class="dashboard-text" style="color:#FFFFFF">Signed off properties</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-12 width-100">
+            <div class="dashboard-card" style="background-color: #101e45; color:#FFFFFF">
+                <div class="card-body" style="color:#FFFFFF; text-align: center; padding: 7px 10px;">
+                    <i style="font-size: xx-large;" class="fa fa-tree" aria-hidden="true"></i>
+                    <div class="dashboard-number" style="color:#FFFFFF"><span id="vacantPercentage">@Model.VacantPercentage</span>%</div>
+                    <div class="dashboard-text" style="color:#FFFFFF">Vacant Status</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-12 width-100">
             <div class="dashboard-card" style="background-color: #101e45; color:#FFFFFF">
                 <div class="card-body" style="color:#FFFFFF; text-align: center; padding: 7px 10px;">
                     <i style="font-size: xx-large;" class="fa fa-building" aria-hidden="true"></i>
@@ -49,7 +64,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 width-100">
+        <div class="col-lg-2 col-md-4 col-sm-12 width-100">
             <div class="dashboard-card" style="background-color: #101e45; color:#FFFFFF">
                 <div class="card-body" style="color:#FFFFFF; text-align: center; padding: 7px 10px;">
                     <div class="dashboard-icon"><i style="font-size: xx-large;" class="fa fa-level-up" aria-hidden="true"></i></div>
@@ -58,7 +73,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 width-100">
+        <div class="col-lg-2 col-md-4 col-sm-12 width-100">
             <div class="dashboard-card" style="background-color: #101e45; color:#FFFFFF">
                 <div class="card-body" style="color:#FFFFFF; text-align: center; padding: 7px 10px;">
                     <div class="dashboard-icon"><i style="font-size: xx-large; color:#FFFFFF" class="fa fa-arrows-h" aria-hidden="true"></i></div>
@@ -240,9 +255,10 @@
                 $("#ImprovementsSize").empty().append(aData[5]).find('#ImprovementsSize');
                 $("#OccupationStatus").empty().append(aData[6]).find('#OccupationStatus');
                 $("#PropertiesPercentage").empty().append(aData[7]).find('#PropertiesPercentage');
+                $("#vacantPercentage").empty().append(aData[8]).find('#vacantPercentage');                
                 var dsf = aData[7] + '%';
                 $("#propertiesPercentageProgressbar").css({ width: dsf });
-                dataPoints = aData[8];
+                dataPoints = aData[9];
                 setCarousel(dataPoints);
                 loopCount = 0;
                 firstPlace = 0;
@@ -251,7 +267,7 @@
                 forthPlace = 3;
                 $('#records_table tbody').empty();
                 var trHTML = '';   
-                $.each(aData[8], function (i, item) {
+                $.each(aData[9], function (i, item) {
                     if (item.Label.toLowerCase().trim() == 'public open space') {
                         $("#demo").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "yellow", colorAlpha: 3, bgcolor: "#696969", type: "default" });
                     }
@@ -285,11 +301,12 @@
                 $("#ImprovementsSize").empty().append(aData[5]).find('#ImprovementsSize');
                 $("#OccupationStatus").empty().append(aData[6]).find('#OccupationStatus');
                 $("#PropertiesPercentage").empty().append(aData[7]).find('#PropertiesPercentage');
+                $("#vacantPercentage").empty().append(aData[8]).find('#vacantPercentage');  
                 var dsf = aData[7] + '%';
                 $("#propertiesPercentageProgressbar").css({ width: dsf });
                 $('#records_table tbody').empty();
                 var trHTML = '';              
-                dataPoints = aData[8];
+                dataPoints = aData[9];
                 setCarousel(dataPoints);
                 loopCount = 0;
                 firstPlace = 0;
@@ -297,7 +314,7 @@
                 theirthPlace = 2;
                 forthPlace = 3;
 
-                $.each(aData[8], function (i, item) {
+                $.each(aData[9], function (i, item) {
                     if (item.Label.toLowerCase().trim() == 'public open space') {
                         $("#demo").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "yellow", colorAlpha: 3, bgcolor: "#696969", type: "default" });
                     }
@@ -325,14 +342,14 @@
             var aData = chData;
             $('#records_table tbody').empty();
             var trHTML = '';
-            dataPoints = aData[8];
+            dataPoints = aData[9];
             setCarousel(dataPoints);
             loopCount = 0;
             firstPlace = 0;
             secondPlace = 1;
             theirthPlace = 2;
             forthPlace = 3;
-            $.each(aData[8], function (i, item) {
+            $.each(aData[9], function (i, item) {
                 if (item.Label.toLowerCase().trim() == 'public open space') {
                     $("#demo").gauge(item.Y, { min: 0, max: item.Total, unit: "/" + item.Total, color: "yellow", colorAlpha: 3, bgcolor: "#696969", type: "default" });
                 }
